@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Address Book</title>
+    <link rel="stylesheet" type="text/css" href="/css/all.css" />
+  </head>
+  <body>
+    <h1>通訊錄</h1>
+    <form action="">
+      <button id="btn_add_contact"><a href="addContact.php" id="btn_link" target="_blank">新增連絡人</a></button>
+    </form>
+
+    <table   border="1" style="border-collapse: collapse">
+
+        <tr>
+            <th>人數</th>
+            <th>頭像</th>
+            <th>名字</th>
+            <th>姓氏</th>
+            <th>電子郵件</th>
+            <th>手機</th>
+            <th>連絡地址</th>
+            <th>刪除</th>
+            <th>編輯</th>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td><img src="/images/avatars (1).jfif" alt=""></td>
+            <td>Alii</td>
+            <td>Freddd</td>
+            <td>aaaa@aa.com</td>
+            <td>0999999999</td>
+            <td>Gorgiaa</td>
+            <td>
+                <form action="" method="post">
+                    <input type="hidden" name="Id" value="">
+                    <input type="submit" style="padding: 10px 24px;background-color: purple;color: white" value="Delete">
+                </form>
+            </td>
+
+            <td>
+                <form action="" method="post">
+                    <input type="hidden" name="contactId" value="">
+                    <input type="submit" style="padding: 10px 24px;background-color: purple;color: white" value="Delete">
+                </form>
+            </td>
+        </tr>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="/js/all.js"></script>
+  </body>
+</html>
