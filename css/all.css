@@ -41,7 +41,7 @@ input {
   color: white;
 }
 
-.pagination {
+/* .pagination {
   display: inline-block;
 }
 
@@ -59,7 +59,7 @@ input {
   background-color: #4caf50;
   color: white;
   border: 1px solid #4caf50;
-}
+} */
 
 input[type="text"] {
   width: 100%;
@@ -104,4 +104,20 @@ input[type="submit"]:hover {
 
 a:visited {
   color: purple;
+}
+
+.page-item.active .page-link {
+  background-color: purple;
+  border-color: purple;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: purple;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
 }

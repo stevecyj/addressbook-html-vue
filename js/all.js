@@ -1,8 +1,9 @@
 const app = new Vue({
-  el: '#app',
+  el: "#app",
   data: {
-    text: 'hahahahah',
+    text: "hahahahah",
     data: [],
+    countOfPage: 5, //一頁顯示數量
     currentPage: 0 //預設目前頁數
   },
   computed: {
@@ -25,7 +26,7 @@ const app = new Vue({
   created() {
     const vm = this;
     axios
-      .get('http://127.0.0.1:8000/api/contacts')
+      .get("http://127.0.0.1/addressbook-laravel/public/api/contacts")
       .then(function(response) {
         // handle success
         console.log(response);
