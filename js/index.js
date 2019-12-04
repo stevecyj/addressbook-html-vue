@@ -1,7 +1,7 @@
 const app = new Vue({
   el: "#app",
   data: {
-    text: "hahahahah",
+    // text: "hahahahah",
     data: [],
     countOfPage: 5, //一頁顯示數量
     currentPage: 0 //預設目前頁數

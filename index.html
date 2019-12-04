@@ -21,7 +21,7 @@
 
       <form action="">
         <button id="btn_add_contact">
-          <a href="addContact.php" id="btn_link" target="_blank">新增連絡人</a>
+          <a href="addContact.html" id="btn_link" target="_blank">新增連絡人</a>
         </button>
       </form>
 
@@ -49,14 +49,14 @@
           <td>
             <form action="" method="post">
               <input type="hidden" name="Id" value="" />
-              <input type="submit" style="padding: 10px 24px;background-color: purple;color: white" value="Delete" />
+              <input type="submit" value="Delete" />
             </form>
           </td>
 
           <td>
-            <form action="" method="post">
+            <form action="editfrm.html" method="post">
               <input type="hidden" name="contactId" value="" />
-              <input type="submit" style="padding: 10px 24px;background-color: purple;color: white" value="Edit" />
+              <input type="submit" value="Edit" />
             </form>
           </td>
         </tr>
@@ -79,6 +79,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
-    <script src="/js/all.js"></script>
+    <script src="/js/index.js"></script>
   </body>
 </html>
