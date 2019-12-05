@@ -1,5 +1,5 @@
 const app = new Vue({
-  el: "#app",
+  el: '#app',
   data: {
     // text: "hahahahah",
     data: [],
@@ -26,7 +26,7 @@ const app = new Vue({
   created() {
     const vm = this;
     axios
-      .get("http://127.0.0.1/addressbook-laravel/public/api/contacts")
+      .get('http://127.0.0.1/addressbook-laravel/public/api/contacts')
       .then(function(response) {
         // handle success
         console.log(response);
@@ -40,5 +40,15 @@ const app = new Vue({
       .finally(function() {
         // always executed
       });
+  },
+  methods: {
+    removeContacts(id) {
+      const vm = this;
+      console.log(vm.data);
+      axios.delete(`http://localhost:8001/public/api/contactsdel/${id}`).then(response => {
+        console.log(response);
+        window.location.reload();
+      });
+    }
   }
 });

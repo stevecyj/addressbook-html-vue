@@ -45,12 +45,11 @@
           <td>{{item.Lname}}</td>
           <td>{{item.Email}}</td>
           <td>{{item.Phone}}</td>
-          <td>{{item.Address}}</td>
+          <td>{{item.Address}}{{item.id}}</td>
           <td>
-            <form action="" method="post">
-              <input type="hidden" name="Id" value="" />
-              <input type="submit" value="Delete" />
-            </form>
+            <!-- <form action="" method=""></form> -->
+            <input type="hidden" name="Id" value="" />
+            <input type="submit" value="Delete" @click="removeContacts(item.id)" />
           </td>
 
           <td>
