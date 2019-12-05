@@ -8,14 +8,30 @@
     <link rel="stylesheet" type="text/css" href="/css/all.css" />
   </head>
   <body>
-    <form action="#" method="post">
-      <p><input type="hidden" name="idupdate" value="" /></p>
-      <p><input type="text" style="background-color: white;" name="fname" value="" placeholder="請輸入姓氏" /></p>
-      <p><input type="text" style="background-color: white;" name="lname" value="" placeholder="請輸入名字" /></p>
-      <p><input type="text" style="background-color: white;" name="email" value="" placeholder="請輸入 Email" /></p>
-      <p><input type="text" style="background-color: white;" name="phone" value="" placeholder="請輸入手機" /></p>
-      <p><input type="text" style="background-color: white;" name="address" value="" placeholder="請輸入地址" /></p>
-      <p><input type="submit" style="background-color: #4caf50;" value="更改" /></p>
-    </form>
+    <div id="app">
+      <form action="#" method="post">
+        <p><input type="hidden" name="idupdate" value="" /></p>
+        <p>
+          <input type="text" id="fname" name="fname" value="" placeholder="請輸入姓氏" v-model="Fname" />
+        </p>
+        <p>
+          <input type="text" id="lname" name="lname" value="" placeholder="請輸入名字" v-model="Lname" />
+        </p>
+        <p>
+          <input type="text" id="email" name="email" value="" placeholder="請輸入 Email" v-model="Email" />
+        </p>
+        <p>
+          <input type="text" id="phone" name="phone" value="" placeholder="請輸入手機" v-model="Phone" />
+        </p>
+        <p>
+          <input type="text" id="address" name="address" value="" placeholder="請輸入地址" v-model="Address" />
+        </p>
+        <p><input type="submit" style="background-color: #4caf50;" value="更改" @click="edit()" /></p>
+      </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="/js/editfrm.js"></script>
   </body>
 </html>

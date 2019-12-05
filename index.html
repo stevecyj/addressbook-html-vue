@@ -59,15 +59,15 @@
           </td>
 
           <td>
-            <form action="editfrm.html" method="post">
-              <input type="hidden" name="contactId" value="" />
-              <input
-                type="submit"
-                type="submit"
-                style="padding: 10px 24px;background-color: purple;color: white"
-                value="編輯"
-              />
-            </form>
+            <form action="" method="post"></form>
+            <input type="hidden" name="contactId" value="" />
+            <input
+              type="submit"
+              type="submit"
+              style="padding: 10px 24px;background-color: purple;color: white"
+              value="編輯"
+              @click="editContacts(item.id)"
+            />
           </td>
         </tr>
       </table>

@@ -1,5 +1,5 @@
 const app = new Vue({
-  el: '#app',
+  el: "#app",
   data: {
     // text: "hahahahah",
     data: [],
@@ -26,7 +26,7 @@ const app = new Vue({
   created() {
     const vm = this;
     axios
-      .get('http://127.0.0.1/addressbook-laravel/public/api/contacts')
+      .get("http://127.0.0.1/addressbook-laravel/public/api/contacts")
       .then(function(response) {
         // handle success
         console.log(response);
@@ -43,12 +43,34 @@ const app = new Vue({
   },
   methods: {
     removeContacts(id) {
-      const vm = this;
-      console.log(vm.data);
+      // const vm = this;
+      // console.log(vm.data);
       axios.delete(`http://localhost:8001/public/api/contactsdel/${id}`).then(response => {
         console.log(response);
         window.location.reload();
       });
+    },
+    editContacts(id) {
+      axios
+        .get(`http://localhost:8001/public/api/contacts/${id}`)
+        .then(function(response) {
+          // handle success
+          console.log(response.data);
+          sessionStorage.setItem("Address", response.data.Address);
+          sessionStorage.setItem("Fname", response.data.Fname);
+          sessionStorage.setItem("Lname", response.data.Lname);
+          sessionStorage.setItem("Phone", response.data.Phone);
+          sessionStorage.setItem("Email", response.data.Email);
+          sessionStorage.setItem("Id", response.data.id);
+          window.location.href = "http://localhost:8002/editfrm.html";
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .finally(function() {
+          // always executed
+        });
     }
   }
 });
