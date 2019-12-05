@@ -49,13 +49,24 @@
           <td>
             <!-- <form action="" method=""></form> -->
             <input type="hidden" name="Id" value="" />
-            <input type="submit" value="Delete" @click="removeContacts(item.id)" />
+            <input
+              type="submit"
+              type="submit"
+              style="padding: 10px 24px;background-color: purple;color: white"
+              value="刪除"
+              @click="removeContacts(item.id)"
+            />
           </td>
 
           <td>
             <form action="editfrm.html" method="post">
               <input type="hidden" name="contactId" value="" />
-              <input type="submit" value="Edit" />
+              <input
+                type="submit"
+                type="submit"
+                style="padding: 10px 24px;background-color: purple;color: white"
+                value="編輯"
+              />
             </form>
           </td>
         </tr>

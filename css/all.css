@@ -35,6 +35,10 @@ table th {
   color: white;
 }
 
+table td {
+  font-size: 15px;
+}
+
 input {
   padding: 10px 24px;
   background-color: purple;
