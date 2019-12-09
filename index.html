@@ -38,10 +38,21 @@
           <th>編輯</th>
         </tr>
 
-        <tr v-for="(item, index) in filterData[currentPage]">
+        <tr v-for="(item, index) in filterData[currentPage]" @dblclick="editInfo(item)">
           <td>{{currentPage * countOfPage + index +1}}</td>
           <td><img :src="item.ImgPath" alt="" /></td>
-          <td>{{item.Fname}}</td>
+          <td>
+            <div v-if="item.id !== cacheItem.id">{{item.Fname}}</div>
+            <input
+              type="text"
+              v-if="item.id === cacheItem.id"
+              v-model="cacheFname"
+              @keyup.esc="cancelEditFname()"
+              @keyup.enter="doneEditFname(item)"
+              style="background-color: aliceblue; color: black;"
+            />
+          </td>
+
           <td>{{item.Lname}}</td>
           <td>{{item.Email}}</td>
           <td>{{item.Phone}}</td>
@@ -66,7 +77,7 @@
               type="submit"
               style="padding: 10px 24px;background-color: purple;color: white"
               value="編輯"
-              @click="editContacts(item.id)"
+              @click="editContacts(item.id, index)"
             />
           </td>
         </tr>

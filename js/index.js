@@ -1,10 +1,12 @@
 const app = new Vue({
-  el: "#app",
+  el: '#app',
   data: {
     // text: "hahahahah",
     data: [],
+    cacheItem: {},
+    cacheFname: '',
     countOfPage: 5, //一頁顯示數量
-    currentPage: 0 //預設目前頁數
+    currentPage: 0, //預設目前頁數
   },
   computed: {
     filterData() {
@@ -21,12 +23,12 @@ const app = new Vue({
       });
       console.log(newData);
       return newData;
-    }
+    },
   },
   created() {
     const vm = this;
     axios
-      .get("http://127.0.0.1/addressbook-laravel/public/api/contacts")
+      .get('http://127.0.0.1/addressbook-laravel/public/api/contacts')
       .then(function(response) {
         // handle success
         console.log(response);
@@ -50,19 +52,24 @@ const app = new Vue({
         window.location.reload();
       });
     },
-    editContacts(id) {
+    editContacts(id, index) {
+      const vm = this;
+      let idx = vm.currentPage * vm.countOfPage + index;
+      console.log(vm.data[idx]);
+      let formData = new FormData();
+      formData.append('Fname', this.data.Fname);
+      formData.append('Lname', this.data.Lname);
+      formData.append('Email', this.data.Email);
+      formData.append('Phone', this.data.Phone);
+      formData.append('Address', this.data.Address);
       axios
-        .get(`http://localhost:8001/public/api/contacts/${id}`)
+        .put(`http://localhost:8001/public/api/contactsmodify/${id}`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        })
         .then(function(response) {
           // handle success
           console.log(response.data);
-          sessionStorage.setItem("Address", response.data.Address);
-          sessionStorage.setItem("Fname", response.data.Fname);
-          sessionStorage.setItem("Lname", response.data.Lname);
-          sessionStorage.setItem("Phone", response.data.Phone);
-          sessionStorage.setItem("Email", response.data.Email);
-          sessionStorage.setItem("Id", response.data.id);
-          window.location.href = "http://localhost:8002/editfrm.html";
+          // window.location.href = 'http://localhost:8002/editfrm.html';
         })
         .catch(function(error) {
           // handle error
@@ -71,6 +78,19 @@ const app = new Vue({
         .finally(function() {
           // always executed
         });
-    }
-  }
+    },
+    editInfo(item) {
+      console.log(item.id);
+      this.cacheItem = item;
+      this.cacheFname = item.Fname;
+    },
+    cancelEditFname() {
+      this.cacheItem = {};
+    },
+    doneEditFname(item) {
+      item.Fname = this.cacheFname;
+      this.cacheFname = '';
+      this.cacheItem = {};
+    },
+  },
 });
