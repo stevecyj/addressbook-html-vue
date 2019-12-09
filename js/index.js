@@ -5,8 +5,12 @@ const app = new Vue({
     data: [],
     cacheItem: {},
     cacheFname: '',
+    cacheLname: '',
+    cacheEmail: '',
+    cachePhone: '',
+    cacheAddress: '',
     countOfPage: 5, //一頁顯示數量
-    currentPage: 0, //預設目前頁數
+    currentPage: 0 //預設目前頁數
   },
   computed: {
     filterData() {
@@ -23,7 +27,7 @@ const app = new Vue({
       });
       console.log(newData);
       return newData;
-    },
+    }
   },
   created() {
     const vm = this;
@@ -55,16 +59,24 @@ const app = new Vue({
     editContacts(id, index) {
       const vm = this;
       let idx = vm.currentPage * vm.countOfPage + index;
-      console.log(vm.data[idx]);
+      console.log(vm.data[idx].Fname);
       let formData = new FormData();
-      formData.append('Fname', this.data.Fname);
-      formData.append('Lname', this.data.Lname);
-      formData.append('Email', this.data.Email);
-      formData.append('Phone', this.data.Phone);
-      formData.append('Address', this.data.Address);
+      formData.append('Fname', vm.data[idx].Fname);
+      formData.append('Lname', vm.data[idx].Lname);
+      formData.append('Email', vm.data[idx].Email);
+      formData.append('Phone', vm.data[idx].Phone);
+      formData.append('Address', vm.data[idx].Address);
+      const config = {
+        header: { 'Content-Type': 'multipart/form-data' }
+      };
       axios
-        .put(`http://localhost:8001/public/api/contactsmodify/${id}`, formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
+        .put(`http://localhost:8001/public/api/contactsmodify/${id}`, {
+          Fname: vm.data[idx].Fname,
+          Lname: vm.data[idx].Lname,
+          Email: vm.data[idx].Email,
+          Phone: vm.data[idx].Phone,
+          Address: vm.data[idx].Address
+          // ImgPath: 'http://127.0.0.1/images/16.jpg'
         })
         .then(function(response) {
           // handle success
@@ -83,14 +95,26 @@ const app = new Vue({
       console.log(item.id);
       this.cacheItem = item;
       this.cacheFname = item.Fname;
+      this.cacheLname = item.Lname;
+      this.cacheEmail = item.Email;
+      this.cachePhone = item.Phone;
+      this.cacheAddress = item.Address;
     },
-    cancelEditFname() {
+    cancelEditInfo() {
       this.cacheItem = {};
     },
-    doneEditFname(item) {
+    doneEditInfo(item) {
       item.Fname = this.cacheFname;
+      item.Lname = this.cacheLname;
+      item.Email = this.cacheEmail;
+      item.Phone = this.cachePhone;
+      item.Address = this.cacheAddress;
       this.cacheFname = '';
+      this.cacheLname = '';
+      this.cacheEmail = '';
+      this.cachePhone = '';
+      this.cacheAddress = '';
       this.cacheItem = {};
-    },
-  },
+    }
+  }
 });

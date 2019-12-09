@@ -38,25 +38,65 @@
           <th>編輯</th>
         </tr>
 
-        <tr v-for="(item, index) in filterData[currentPage]" @dblclick="editInfo(item)">
+        <tr v-for="(item, index) in filterData[currentPage]">
           <td>{{currentPage * countOfPage + index +1}}</td>
           <td><img :src="item.ImgPath" alt="" /></td>
           <td>
-            <div v-if="item.id !== cacheItem.id">{{item.Fname}}</div>
+            <div v-if="item.id !== cacheItem.id" @dblclick="editInfo(item)">{{item.Fname}}</div>
             <input
               type="text"
               v-if="item.id === cacheItem.id"
               v-model="cacheFname"
-              @keyup.esc="cancelEditFname()"
-              @keyup.enter="doneEditFname(item)"
+              @keyup.esc="cancelEditInfo()"
+              @keyup.enter="doneEditInfo(item)"
               style="background-color: aliceblue; color: black;"
             />
           </td>
 
-          <td>{{item.Lname}}</td>
-          <td>{{item.Email}}</td>
-          <td>{{item.Phone}}</td>
-          <td>{{item.Address}}{{item.id}}</td>
+          <td>
+            <div v-if="item.id !== cacheItem.id" @dblclick="editInfo(item)">{{item.Lname}}</div>
+            <input
+              type="text"
+              v-if="item.id === cacheItem.id"
+              v-model="cacheLname"
+              @keyup.esc="cancelEditInfo()"
+              @keyup.enter="doneEditInfo(item)"
+              style="background-color: aliceblue; color: black;"
+            />
+          </td>
+          <td>
+            <div v-if="item.id !== cacheItem.id" @dblclick="editInfo(item)">{{item.Email}}</div>
+            <input
+              type="text"
+              v-if="item.id === cacheItem.id"
+              v-model="cacheEmail"
+              @keyup.esc="cancelEditInfo()"
+              @keyup.enter="doneEditInfo(item)"
+              style="background-color: aliceblue; color: black;"
+            />
+          </td>
+          <td>
+            <div v-if="item.id !== cacheItem.id" @dblclick="editInfo(item)">{{item.Phone}}</div>
+            <input
+              type="text"
+              v-if="item.id === cacheItem.id"
+              v-model="cachePhone"
+              @keyup.esc="cancelEditInfo()"
+              @keyup.enter="doneEditInfo(item)"
+              style="background-color: aliceblue; color: black;"
+            />
+          </td>
+          <td>
+            <div v-if="item.id !== cacheItem.id" @dblclick="editInfo(item)">{{item.Address}}</div>
+            <input
+              type="text"
+              v-if="item.id === cacheItem.id"
+              v-model="cacheAddress"
+              @keyup.esc="cancelEditInfo()"
+              @keyup.enter="doneEditInfo(item)"
+              style="background-color: aliceblue; color: black;"
+            />
+          </td>
           <td>
             <!-- <form action="" method=""></form> -->
             <input type="hidden" name="Id" value="" />
